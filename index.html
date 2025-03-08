@@ -1,9 +1,8 @@
-html_content = """
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duygu Loves Aryan ❤️</title>
     <style>
         body {
@@ -83,22 +82,22 @@ html_content = """
     </style>
 </head>
 <body>
-    <div class='container'>
+    <div class="container">
         <h1>Duygu Loves Aryan ❤️</h1>
         <p>Every day with you is special, and this little webpage is just a small way to show my love for you!</p>
         <p>You are my sunshine, my joy, and my greatest adventure. I love you so much! ❤️</p>
-        <div class='heart'>❤️</div>
-        <button onclick='showMessage()'>Click for a Surprise! 💌</button>
-        <p id='message'>You make my world brighter every day! 🌟</p>
-        <p id='emoji' style='font-size: 50px;'>🥰💖😘</p>
+        <div class="heart">❤️</div>
+        <button onclick="showMessage()">Click for a Surprise! 💌</button>
+        <p id="message">You make my world brighter every day! 🌟</p>
+        <p id="emoji" style="font-size: 50px;">🥰💖😘</p>
 
-        <button onclick='startGame()'>Play a Cute Love Game! 🎮</button>
-        <div id='game'>
+        <button onclick="startGame()">Play a Cute Love Game! 🎮</button>
+        <div id="game">
             <p>Which one do you love the most?</p>
-            <button onclick='showLove("Me! ❤️")'>Me! ❤️</button>
-            <button onclick='showLove("Indian Food 🍛")'>Indian Food 🍛</button>
-            <button onclick='showLove("Sleep 😴")'>Sleep 😴</button>
-            <p id='gameResult'></p>
+            <button onclick="showLove('Me! ❤️')">Me! ❤️</button>
+            <button onclick="showLove('Indian Food 🍛')">Indian Food 🍛</button>
+            <button onclick="showLove('Sleep 😴')">Sleep 😴</button>
+            <p id="gameResult"></p>
         </div>
     </div>
 
@@ -121,10 +120,3 @@ html_content = """
     </script>
 </body>
 </html>
-"""
-
-# Save the file as index.html
-with open("index.html", "w", encoding="utf-8") as file:
-    file.write(html_content)
-
-print("index.html has been created! You can now use this file for your website.")
