@@ -13,34 +13,36 @@
             margin: 0;
             padding: 20px;
         }
+
         h1 {
             font-size: 45px;
             animation: glow 1.5s infinite alternate;
+            margin-bottom: 10px;
         }
+
         @keyframes glow {
             from { text-shadow: 0 0 10px #ff4d4d; }
             to { text-shadow: 0 0 20px #ff0000; }
         }
+
         p {
             font-size: 22px;
+            margin: 10px 0;
         }
+
         .heart {
             font-size: 100px;
             color: red;
             animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
         }
+
         @keyframes heartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            display: inline-block;
-            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-        }
+
         button {
             background-color: #ff4d4d;
             color: white;
@@ -52,89 +54,86 @@
             margin-top: 20px;
             transition: 0.3s;
         }
+
         button:hover {
             background-color: #cc0000;
             transform: scale(1.1);
         }
-        #message, #emoji, #game, #loveResult {
-            display: none;
-            font-size: 22px;
-            margin-top: 20px;
+
+        .countdown {
+            font-size: 30px;
             color: #ff4081;
-            animation: fadeIn 2s;
+            margin-top: 20px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        #greeting {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #ff4081;
         }
-        #game button {
-            background-color: #ff4081;
-            color: white;
-            padding: 10px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #game button:hover {
-            background-color: #d4006f;
-        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Duygu Loves Aryan ❤️</h1>
-        <p>Every day with you is special, and this little webpage is just a small way to show my love for you!</p>
-        <p>You are my sunshine, my joy, and my greatest adventure. I love you so much! ❤️</p>
-        <div class="heart">❤️</div>
-        <button onclick="showMessage()">Click for a Surprise! 💌</button>
-        <p id="message">You make my world brighter every day! 🌟</p>
-        <p id="emoji" style="font-size: 50px;">🥰💖😘</p>
-        
-        <button onclick="startGame()">Play a Cute Love Game! 🎮</button>
-        <div id="game">
-            <p>Which one do you love the most?</p>
-            <button onclick="showLove('Me! ❤️')">Me! ❤️</button>
-            <button onclick="showLove('Indian Food 🍛')">Indian Food 🍛</button>
-            <button onclick="showLove('Sleep 😴')">Sleep 😴</button>
-            <p id="gameResult"></p>
-        </div>
 
-        <h2>Love Calculator 💖</h2>
-        <p>Find out your love score with Aryan! 💕</p>
-        <input type="text" id="yourName" placeholder="Your Name" />
-        <input type="text" id="myName" placeholder="Aryan's Name" />
-        <button onclick="calculateLove()">Calculate Love Score 💘</button>
-        <p id="loveResult"></p>
-    </div>
+    <h1>Duygu Loves Aryan ❤️</h1>
+    <p>Every day with you is special, and this little webpage is just a small way to show my love for you!</p>
+    <p>You are my sunshine, my joy, and my greatest adventure. I love you so much! ❤️</p>
+
+    <div class="heart">❤️</div>
+
+    <!-- Personalized Greeting -->
+    <div id="greeting"></div>
+
+    <!-- Countdown Timer for Anniversary -->
+    <div class="countdown" id="countdown"></div>
 
     <script>
-        function showMessage() {
-            document.getElementById("message").style.display = "block";
-            document.getElementById("emoji").style.display = "block";
-            alert("You are the best thing that ever happened to me! 💕");
-        }
+        // Personalized Greeting based on Time of Day
+        function getGreeting() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var greeting = "";
 
-        function startGame() {
-            document.getElementById("game").style.display = "block";
-        }
-
-        function showLove(choice) {
-            if (choice === "Me! ❤️") {
-                document.getElementById("gameResult").innerText = "Yay! You chose right! 🥰❤️";
+            if (hours >= 6 && hours < 12) {
+                greeting = "Good morning, Aryan! 💖";
+            } else if (hours >= 12 && hours < 18) {
+                greeting = "Good afternoon, Aryan! ☀️";
             } else {
-                document.getElementById("gameResult").innerText = "Hmm... Try again! 😜";
+                greeting = "Good evening, Aryan! 🌙";
             }
+
+            document.getElementById("greeting").innerText = greeting;
         }
 
-        function calculateLove() {
-            var yourName = document.getElementById("yourName").value;
-            var myName = document.getElementById("myName").value;
-            var loveScore = Math.floor(Math.random() * 10) + 90;  // Ensures love score is always 90% or higher
-            var loveMessage = `You and I are a perfect match! ❤️ Love Score: ${loveScore}%`;
-            document.getElementById("loveResult").innerText = loveMessage;
-            document.getElementById("loveResult").style.display = "block";
+        // Countdown Timer for 8-Month Anniversary (30.03.2025)
+        function countdown() {
+            var countDownDate = new Date("Mar 30, 2025 00:00:00").getTime();
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = "Countdown to Our 8-Month Anniversary: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "Our 8-month anniversary has arrived! 🎉";
+                }
+            }, 1000);
+        }
+
+        // Call the functions
+        window.onload = function() {
+            getGreeting();
+            countdown();
         }
     </script>
+
 </body>
 </html>
