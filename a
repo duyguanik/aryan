@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Promises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid red;
+            border-radius: 10px;
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        h1 {
+            color: red;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You Broke Everything</h1>
+        <p class="quote">"The things we hold dear are always far away from us." – The Tale of the Princess Kaguya</p>
+        <p>You promised, but you never kept them. You made me believe, but you let me down. Trust is not something that can be repaired once shattered.</p>
+        <p>If you have anything to say for yourself, write it below.</p>
+        <form action="mailto:duygumelekanik459@gmail.com" method="post" enctype="text/plain">
+            <textarea name="message" placeholder="Write what you feel..."></textarea>
+            <br>
+            <button type="submit">Send Regret</button>
+        </form>
+    </div>
+</body>
+</html>
