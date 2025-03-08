@@ -46,7 +46,7 @@
             background-color: #cc0000;
             transform: scale(1.1);
         }
-        #loveResult, #message {
+        #loveResult, #message, #gameResult {
             display: none;
             font-size: 22px;
             margin-top: 20px;
@@ -68,11 +68,17 @@
         <p id="message"></p>
         
         <h2>Love Calculator 💖</h2>
-        <p>Find out your love score with Aryan! 💕</p>
+        <p>Find out your love score with me! 💕</p>
         <input type="text" id="yourName" placeholder="Your Name" />
-        <input type="text" id="myName" placeholder="Aryan's Name" />
+        <input type="text" id="myName" placeholder="My Name" />
         <button onclick="calculateLove()">Calculate Love Score 💘</button>
         <p id="loveResult"></p>
+        
+        <h2>Guess the Love Word 💕</h2>
+        <p>Guess a word that reminds you of our love! 😍</p>
+        <input type="text" id="loveWord" placeholder="Type your guess..." />
+        <button onclick="checkLoveWord()">Check</button>
+        <p id="gameResult"></p>
     </div>
 
     <script>
@@ -102,6 +108,19 @@
                 loveResult.innerText = `Love Calculator ${yourName} / ${myName} ❤️\nLove Score: -100%\n🔥 If you look at another girl, consider me gone! 😡`;
             }
             loveResult.style.display = "block";
+        }
+
+        function checkLoveWord() {
+            var correctWords = ["love", "forever", "duygu", "heart", "soulmate", "happiness", "dream"];
+            var userWord = document.getElementById("loveWord").value.trim().toLowerCase();
+            var gameResult = document.getElementById("gameResult");
+            
+            if (correctWords.includes(userWord)) {
+                gameResult.innerText = "You guessed right! This is a love-filled word! ❤️🥰";
+            } else {
+                gameResult.innerText = "Hmm... Try again! 😜";
+            }
+            gameResult.style.display = "block";
         }
     </script>
 </body>
