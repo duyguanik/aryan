@@ -39,7 +39,7 @@
         button:hover {
             background-color: #cc0000;
         }
-        #message, #loveResult, #gameResult {
+        #message, #gameResult, #timeMessage, #countdown {
             display: none;
             font-size: 22px;
             margin-top: 20px;
@@ -47,6 +47,11 @@
     </style>
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="rang-lageya.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="container">
         <h1>Duygu Loves Aryan ❤️</h1>
         <p>You are my sunshine, my joy, and my greatest adventure. I love you so much! ❤️</p>
@@ -54,24 +59,17 @@
         <button onclick="showMessage()">Click for a Surprise! 💌</button>
         <p id="message"></p>
         
-        <h2>Love Calculator 💖</h2>
-        <p>Find out your love score with me! 💕</p>
-        <input type="text" id="yourName" placeholder="Your Name" />
-        <input type="text" id="myName" placeholder="My Name" />
-        <button onclick="calculateLove()">Calculate Love Score 💘</button>
-        <p id="loveResult"></p>
-        
         <h2>Guess the Love Word 💕</h2>
         <p>Guess a word that reminds you of our love! 😍</p>
         <input type="text" id="loveWord" placeholder="Type your guess..." />
         <button onclick="checkLoveWord()">Check</button>
         <p id="gameResult"></p>
         
-        <h2>Good Night/Good Morning Message 💌</h2>
+        <h2>Good Morning/Good Night Message 💌</h2>
         <button onclick="showTimeMessage()">See My Personalized Message</button>
         <p id="timeMessage"></p>
         
-        <h2>Countdown to Forever 💖</h2>
+        <h2>Countdown to Our Special Day 💖</h2>
         <button onclick="startCountdown()">Start Countdown</button>
         <p id="countdown"></p>
     </div>
@@ -87,19 +85,6 @@
             ];
             document.getElementById("message").innerText = messages[Math.floor(Math.random() * messages.length)];
             document.getElementById("message").style.display = "block";
-        }
-
-        function calculateLove() {
-            const yourName = document.getElementById("yourName").value.trim().toLowerCase();
-            const myName = document.getElementById("myName").value.trim();
-            const loveResult = document.getElementById("loveResult");
-            
-            if (yourName === "duygu" || yourName === "aryan") {
-                loveResult.innerText = `Love Score for ${yourName} and ${myName}: ${Math.floor(Math.random() * 100)}% 💕`;
-            } else {
-                loveResult.innerText = "Try Again! 💘";
-            }
-            loveResult.style.display = "block";
         }
 
         function checkLoveWord() {
@@ -130,7 +115,7 @@
         }
 
         function startCountdown() {
-            let countdownDate = new Date("Dec 31, 2025 00:00:00").getTime();
+            let countdownDate = new Date("March 30, 2025 00:00:00").getTime();
             const countdownElement = document.getElementById("countdown");
             const interval = setInterval(function() {
                 let now = new Date().getTime();
@@ -138,7 +123,7 @@
                 
                 if (distance < 0) {
                     clearInterval(interval);
-                    countdownElement.innerText = "Our Forever Starts Now! ❤️";
+                    countdownElement.innerText = "Our 8th Month Anniversary Starts Now! ❤️";
                 } else {
                     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
