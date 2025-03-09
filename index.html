@@ -110,6 +110,7 @@
     </div>
 
     <script>
+        // List of swear words for aggressive responses
         const swearWords = ["damn", "hell", "stupid", "idiot", "crap", "asshole", "bastard", "fuck", "fool", "loser", "jerk"];
         const emotionalWords = ["angry", "mad", "hurt", "betrayed", "sad", "alone", "lost", "frustrated", "hopeless", "pain"];
         const aggressiveReplies = [
@@ -173,6 +174,11 @@
             "Don’t come here using her name. Not after what you did.",
             "You’ve already thrown away everything with your lies, Ayran."
         ];
+
+        // Send message function
+        document.getElementById('sendButton').addEventListener('click', function () {
+            sendMessage();
+        });
 
         function sendMessage() {
             const message = document.getElementById('message').value;
@@ -242,12 +248,27 @@
         }
 
         function containsGreeting(message) {
-            const greetings = ["hi", "hello", "hey", "yo"];
-            return greetings.some(word => message.includes(word));
+            const greetings = ["hi", "hello", "hey"];
+            return greetings.some(greeting => message.includes(greeting));
         }
 
         function containsHowAreYou(message) {
-            return message.includes("how are you") || message.includes("how’s it going");
+            const howAreYouQuestions = ["how are you", "how are you doing", "how’s it going"];
+            return howAreYouQuestions.some(question => message.includes(question));
         }
 
-       
+        function containsWhatAreYouDoing(message) {
+            const whatAreYouDoingQuestions = ["what are you doing", "what’s up", "what’s happening"];
+            return whatAreYouDoingQuestions.some(question => message.includes(question));
+        }
+
+        function containsSwearWords(message) {
+            return swearWords.some(swear => message.includes(swear));
+        }
+
+        function containsEmotionalWords(message) {
+            return emotionalWords.some(word => message.includes(word));
+        }
+    </script>
+</body>
+</html>
