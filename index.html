@@ -27,9 +27,19 @@
             font-style: italic;
             margin: 20px 0;
         }
+        .chatbox {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            color: black;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid red;
+            text-align: left;
+        }
         textarea {
             width: 100%;
-            height: 100px;
+            height: 50px;
             margin-top: 10px;
         }
         button {
@@ -48,11 +58,11 @@
         <p class="quote">"The things we hold dear are always far away from us." – The Tale of the Princess Kaguya</p>
         <p>You promised, but you never kept them. You made me believe, but you let me down. Trust is not something that can be repaired once shattered.</p>
         <p>If you have anything to say for yourself, write it below.</p>
-        <form id="regretForm">
-            <textarea id="message" name="message" placeholder="Write what you feel..."></textarea>
-            <br>
-            <button type="button" onclick="sendMessage()">Send Regret</button>
-        </form>
+        
+        <div class="chatbox" id="chatbox"></div>
+        <textarea id="message" placeholder="Write what you feel..."></textarea>
+        <br>
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <script>
@@ -63,19 +73,17 @@
                 return;
             }
             
-            fetch('https://your-backend-server.com/send-email', {
+            const chatbox = document.getElementById('chatbox');
+            const newMessage = document.createElement('p');
+            newMessage.textContent = "Him: " + message;
+            chatbox.appendChild(newMessage);
+            document.getElementById('message').value = "";
+
+            fetch('http://localhost:5000/save-message', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: 'duygumelekanik459@gmail.com',
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => alert("Message sent successfully!"))
-            .catch(error => alert("Failed to send message."));
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ message: message })
+            });
         }
     </script>
 </body>
