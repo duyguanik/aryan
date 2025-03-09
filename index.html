@@ -159,6 +159,21 @@
             "It hurts to see you like this, but I can’t go back."
         ];
 
+        const nameReplies = [
+            "Don’t use that name. You don’t deserve it.",
+            "What, Duygu now? You’ve lost that privilege.",
+            "I don’t think you should be saying her name. You lost the right to it.",
+            "Don’t say her name. You’re not worthy of it.",
+            "What, Duygu? You think she’d still care about you?"
+        ];
+
+        const mixedReplies = [
+            "Ayran, why do you even care now? Too late.",
+            "So now you remember her name, huh? You messed up.",
+            "Don’t come here using her name. Not after what you did.",
+            "You’ve already thrown away everything with your lies, Ayran."
+        ];
+
         function sendMessage() {
             const message = document.getElementById('message').value;
             if (message.trim() === "") {
@@ -195,6 +210,14 @@
         function getBotResponse(userMessage) {
             const lowerCaseMessage = userMessage.toLowerCase();
 
+            if (lowerCaseMessage.includes("duygu")) {
+                return nameReplies[Math.floor(Math.random() * nameReplies.length)];
+            }
+
+            if (lowerCaseMessage.includes("aryan") || lowerCaseMessage.includes("ayran")) {
+                return mixedReplies[Math.floor(Math.random() * mixedReplies.length)];
+            }
+
             if (containsGreeting(lowerCaseMessage)) {
                 return greetingReplies[Math.floor(Math.random() * greetingReplies.length)];
             }
@@ -223,23 +246,4 @@
             return greetings.some(word => message.includes(word));
         }
 
-        function containsHowAreYou(message) {
-            const howAreYouQuestions = ["how are you", "how’s it going", "how’s everything", "what’s up"];
-            return howAreYouQuestions.some(word => message.includes(word));
-        }
-
-        function containsWhatAreYouDoing(message) {
-            const whatAreYouDoingQuestions = ["what are you doing", "what’s going on", "what’s up"];
-            return whatAreYouDoingQuestions.some(word => message.includes(word));
-        }
-
-        function containsSwearWords(message) {
-            return swearWords.some(word => message.includes(word));
-        }
-
-        function containsEmotionalWords(message) {
-            return emotionalWords.some(word => message.includes(word));
-        }
-    </script>
-</body>
-</html>
+        function containsHow
