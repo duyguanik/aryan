@@ -115,7 +115,6 @@
         const aggressiveReplies = [
             "I’m so tired of hearing your excuses. I’m done with you!",
             "You know what? Your words mean nothing to me anymore.",
-            "You think I’m still here to listen? Pathetic.",
             "You’ve ruined everything, and now you think you can fix it with empty words?",
             "I couldn’t care less about your apologies now. You had your chance!",
             "I’m done being patient. Get over it!"
@@ -130,18 +129,25 @@
             "It doesn’t matter anymore. The damage is done."
         ];
 
-        const swearReplies = [
-            "Is that your best response? Swearing won’t make anything better.",
-            "Throwing insults won’t fix the mess you’ve made.",
-            "Your anger only shows how weak your arguments are.",
-            "It’s just words. Words that mean nothing at this point."
+        const greetingReplies = [
+            "Hi there, what’s left to say?",
+            "Oh, you’re here now. What do you want?",
+            "Hello... What do you have to say now?",
+            "Hey. I don’t know if you deserve a greeting anymore."
         ];
 
-        const emotionalReplies = [
-            "I can feel your pain, but cursing won’t help it fade.",
-            "I see the anger, but it’s clear that you’re hurting too.",
-            "This is more than just anger. I can hear the sadness in your words.",
-            "You feel betrayed, I understand. But you’re not the only one who’s hurting."
+        const howAreYouReplies = [
+            "I’m feeling... betrayed. But thanks for asking, I guess.",
+            "How am I? Well, you’ve ruined my peace.",
+            "Not great, but you don’t care, do you?",
+            "I’m surviving, but it's hard with all the lies."
+        ];
+
+        const whatAreYouDoingReplies = [
+            "What am I doing? Just sitting here, trying to figure out why I ever trusted you.",
+            "Right now? Thinking about how you shattered everything.",
+            "I’m here, waiting for you to fix this mess. But you won’t.",
+            "Just reminiscing on how everything went wrong."
         ];
 
         const regretfulReplies = [
@@ -189,23 +195,42 @@
         function getBotResponse(userMessage) {
             const lowerCaseMessage = userMessage.toLowerCase();
 
+            if (containsGreeting(lowerCaseMessage)) {
+                return greetingReplies[Math.floor(Math.random() * greetingReplies.length)];
+            }
+
+            if (containsHowAreYou(lowerCaseMessage)) {
+                return howAreYouReplies[Math.floor(Math.random() * howAreYouReplies.length)];
+            }
+
+            if (containsWhatAreYouDoing(lowerCaseMessage)) {
+                return whatAreYouDoingReplies[Math.floor(Math.random() * whatAreYouDoingReplies.length)];
+            }
+
             if (containsSwearWords(lowerCaseMessage)) {
-                return swearReplies[Math.floor(Math.random() * swearReplies.length)];
-            }
-
-            if (containsEmotionalWords(lowerCaseMessage)) {
-                return emotionalReplies[Math.floor(Math.random() * emotionalReplies.length)];
-            }
-
-            if (containsAggressiveWords(lowerCaseMessage)) {
                 return aggressiveReplies[Math.floor(Math.random() * aggressiveReplies.length)];
             }
 
-            if (containsRegretfulWords(lowerCaseMessage)) {
+            if (containsEmotionalWords(lowerCaseMessage)) {
                 return regretfulReplies[Math.floor(Math.random() * regretfulReplies.length)];
             }
 
             return defaultReplies[Math.floor(Math.random() * defaultReplies.length)];
+        }
+
+        function containsGreeting(message) {
+            const greetings = ["hi", "hello", "hey", "yo"];
+            return greetings.some(word => message.includes(word));
+        }
+
+        function containsHowAreYou(message) {
+            const howAreYouQuestions = ["how are you", "how’s it going", "how’s everything", "what’s up"];
+            return howAreYouQuestions.some(word => message.includes(word));
+        }
+
+        function containsWhatAreYouDoing(message) {
+            const whatAreYouDoingQuestions = ["what are you doing", "what’s going on", "what’s up"];
+            return whatAreYouDoingQuestions.some(word => message.includes(word));
         }
 
         function containsSwearWords(message) {
@@ -214,16 +239,6 @@
 
         function containsEmotionalWords(message) {
             return emotionalWords.some(word => message.includes(word));
-        }
-
-        function containsAggressiveWords(message) {
-            const aggressiveWords = ["shut up", "screw you", "go away", "leave me alone", "fuck off"];
-            return aggressiveWords.some(word => message.includes(word));
-        }
-
-        function containsRegretfulWords(message) {
-            const regretfulWords = ["too late", "could have", "missed opportunity", "lost everything"];
-            return regretfulWords.some(word => message.includes(word));
         }
     </script>
 </body>
