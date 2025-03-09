@@ -37,6 +37,19 @@
             border: 1px solid red;
             text-align: left;
         }
+        .message {
+            padding: 5px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .user-message {
+            background-color: #ffcccc;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #cccccc;
+            text-align: left;
+        }
         textarea {
             width: 100%;
             height: 50px;
@@ -66,6 +79,15 @@
     </div>
 
     <script>
+        const botReplies = [
+            "Oh, NOW you have something to say?", 
+            "Promises? Remind me, what do those mean again?", 
+            "Too little, too late.", 
+            "Your words are as empty as your promises.",
+            "I’ve heard this before. Did anything change?", 
+            "Go on, keep talking. It doesn’t matter anymore."
+        ];
+
         function sendMessage() {
             const message = document.getElementById('message').value;
             if (message.trim() === "") {
@@ -74,16 +96,28 @@
             }
             
             const chatbox = document.getElementById('chatbox');
-            const newMessage = document.createElement('p');
-            newMessage.textContent = "Him: " + message;
-            chatbox.appendChild(newMessage);
+            const userMessage = document.createElement('p');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = "Him: " + message;
+            chatbox.appendChild(userMessage);
             document.getElementById('message').value = "";
 
-            fetch('http://localhost:5000/save-message', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ message: message })
-            });
+            setTimeout(() => botResponse(), 2000);
+        }
+
+        function botResponse() {
+            const chatbox = document.getElementById('chatbox');
+            const botMessage = document.createElement('p');
+            botMessage.classList.add('message', 'bot-message');
+            
+            let typingEffect = "Typing...";
+            botMessage.textContent = typingEffect;
+            chatbox.appendChild(botMessage);
+
+            setTimeout(() => {
+                botMessage.textContent = "Me: " + botReplies[Math.floor(Math.random() * botReplies.length)];
+                setTimeout(() => botMessage.remove(), 5000);
+            }, 2000);
         }
     </script>
 </body>
